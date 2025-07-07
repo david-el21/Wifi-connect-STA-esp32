@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/davidflorian/Desktop/ESP32/ESP32_Project/build/CMakeFiles/bootloader"
+		},
+		{
+			"file" : "/Users/davidflorian/Desktop/ESP32/ESP32_Project/build/CMakeFiles/bootloader.rule"
+		},
+		{
+			"file" : "/Users/davidflorian/Desktop/ESP32/ESP32_Project/build/CMakeFiles/bootloader-complete.rule"
+		},
+		{
+			"file" : "/Users/davidflorian/Desktop/ESP32/ESP32_Project/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+		},
+		{
+			"file" : "/Users/davidflorian/Desktop/ESP32/ESP32_Project/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+		},
+		{
+			"file" : "/Users/davidflorian/Desktop/ESP32/ESP32_Project/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+		},
+		{
+			"file" : "/Users/davidflorian/Desktop/ESP32/ESP32_Project/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+		},
+		{
+			"file" : "/Users/davidflorian/Desktop/ESP32/ESP32_Project/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+		},
+		{
+			"file" : "/Users/davidflorian/Desktop/ESP32/ESP32_Project/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+		},
+		{
+			"file" : "/Users/davidflorian/Desktop/ESP32/ESP32_Project/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"bootloader"
+		],
+		"name" : "bootloader"
+	}
+}

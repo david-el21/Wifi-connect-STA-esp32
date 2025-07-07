@@ -1,0 +1,5 @@
+source "/Users/davidflorian/Desktop/ESP32/ESP32_Project/components/bootloader/Kconfig.projbuild"
+source "/Users/davidflorian/Desktop/ESP32/ESP32_Project/components/esp_app_format/Kconfig.projbuild"
+source "/Users/davidflorian/Desktop/ESP32/ESP32_Project/components/esp_rom/Kconfig.projbuild"
+source "/Users/davidflorian/Desktop/ESP32/ESP32_Project/components/esptool_py/Kconfig.projbuild"
+source "/Users/davidflorian/Desktop/ESP32/ESP32_Project/components/partition_table/Kconfig.projbuild"

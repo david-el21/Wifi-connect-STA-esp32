@@ -1,0 +1,2 @@
+source /Users/davidflorian/Desktop/ESP32/ESP32_Project/build/bootloader/gdbinit/symbols
+source /Users/davidflorian/Desktop/ESP32/ESP32_Project/build/bootloader/gdbinit/connect

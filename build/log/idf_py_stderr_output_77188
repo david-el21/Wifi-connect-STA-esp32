@@ -1,0 +1,3 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=/Users/davidflorian/.espressif/python_env/idf6.0_py3.13_env/bin/python -DESP_PLATFORM=1 -DIDF_TARGET=esp32s3 -DCCACHE_ENABLE=0 /Users/davidflorian/Desktop/ESP32/ESP32_Project
+fatal: not a git repository (or any of the parent directories): .git
+fatal: not a git repository: /Users/davidflorian/Desktop/ESP32/ESP32_Project/components/openthread/openthread/../../../.git/modules/components/openthread/openthread
