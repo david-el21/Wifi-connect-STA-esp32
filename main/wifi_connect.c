@@ -27,6 +27,16 @@ static void event_handler(void* arg, esp_event_base_t event_base, int32_t event_
             ESP_LOGI(TAG, "Retry %d connecting to SSID: %s", s_retry_num, saved_ssid);
         } else {
             xEventGroupSetBits(s_wifi_event_group, WIFI_FAIL_BIT); // daca s-au depasit incercarile de conectare, setam bitul de esec
+            /**
+             * @brief WIFI TASK user config
+             * 
+             * Currently, after reaching MAX_RETRY, the device stops attempting to reconnect.  
+             * 
+             * As an improvement, instead of using a retry limit, you could create a dedicated 
+             * FreeRTOS task (e.g., wifi_monitor_task) that continuously checks the WiFi status 
+             * and retries the connection indefinitely — for example, every 30 seconds — until 
+             * the connection is successfully restored.
+             */
         }
         // In caz de realizare a conexiunii, se aloca IP-ul conectat pentru device la router si se afiseaza
     } else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
