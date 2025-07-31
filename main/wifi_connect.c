@@ -3,10 +3,9 @@
 #include "esp_log.h"
 #include "freertos/event_groups.h"
 #include <string.h>
-#include "ws2812_control.h"
+
 
 #define MAX_RETRY 5
-#define gpio_num 38
 static const char *TAG = "WiFiConnect";
 static EventGroupHandle_t s_wifi_event_group;
 #define WIFI_CONNECTED_BIT BIT0
@@ -26,10 +25,6 @@ static void event_handler(void* arg, esp_event_base_t event_base, int32_t event_
             esp_wifi_connect();
             s_retry_num++; // incrementam numarul de incercari
             ESP_LOGI(TAG, "Retry %d connecting to SSID: %s", s_retry_num, saved_ssid);
-            ws2812_set_color(0,182,255);
-            vTaskDelay(pdMS_TO_TICKS(1000));    //  Se asteapta conexiunea indicata de o lumina mov
-            ws2812_set_color(0,0,0);
-            vTaskDelay(pdMS_TO_TICKS(1000));
         } else {
             xEventGroupSetBits(s_wifi_event_group, WIFI_FAIL_BIT); // daca s-au depasit incercarile de conectare, setam bitul de esec
         }
@@ -44,17 +39,10 @@ static void event_handler(void* arg, esp_event_base_t event_base, int32_t event_
 
 void wifi_connect(const char *ssid, const char *password)
 {   
-    // Initialize WS2812 on GPIO
-    ws2812_init(gpio_num); // Initializam WS2812 pe GPIO-ul specificat
-    ws2812_set_color(0,0,255);
-    vTaskDelay(pdMS_TO_TICKS(1000)); // Asteptam 1 secunda pentru a vedea culoarea albastra
-    /**/
 
     // Salvam sirurile de caractere : SSID si PASSWORD pentru a le afisa in event_handler
     strncpy(saved_ssid, ssid, sizeof(saved_ssid));
     strncpy(saved_pass, password, sizeof(saved_pass));
-    ws2812_set_color(182,255,0); // Aprinde LED galben dupa ce s-au salvat SSID si PASSWORD
-    vTaskDelay(pdMS_TO_TICKS(1000)); 
     /**/
     s_wifi_event_group = xEventGroupCreate();
     ESP_ERROR_CHECK(esp_netif_init()); // Initializam netif-ul ESP
@@ -110,16 +98,13 @@ void wifi_connect(const char *ssid, const char *password)
                                            pdMS_TO_TICKS(15000)); // timeout de 15s
 
     if (bits & WIFI_CONNECTED_BIT) {
-        ESP_LOGI(TAG, "✅ Connected to SSID: %s", ssid);
-        ws2812_set_color(255,0,0); // Setam culoarea verde pentru succes
-        vTaskDelay(pdMS_TO_TICKS(1000));
+        ESP_LOGI(TAG, "Connected to SSID: %s", ssid);
+     
     } else if (bits & WIFI_FAIL_BIT) {
-        ESP_LOGE(TAG, "❌ Failed to connect to SSID: %s", ssid);
-        ws2812_set_color(0,255,0); // Setam culoarea rosie pentru esec
-        vTaskDelay(pdMS_TO_TICKS(1000));
+        ESP_LOGE(TAG, "Failed to connect to SSID: %s", ssid);
+      
     } else {
-        ESP_LOGE(TAG, "⏰ Timeout while trying to connect to SSID: %s", ssid);
-        ws2812_set_color(255,255,255); // Setam culoarea alba pentru timeout
-        vTaskDelay(pdMS_TO_TICKS(1000));
+        ESP_LOGE(TAG, "Timeout while trying to connect to SSID: %s", ssid);
+      
     }
 }
